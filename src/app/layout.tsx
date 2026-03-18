@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 
 // --- METADATA (SEO, OpenGraph, Twitter) ---
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mayanshbangali.vercel.app/"),
+  metadataBase: new URL("https://mayanshbangali.vercel.app"),
   title: {
     default: "Mayansh Bangali | Creative Developer",
     template: "%s | Mayansh Bangali",
@@ -55,13 +55,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://your-portfolio-domain.com",
+    url: "https://mayanshbangali.vercel.app",
     title: "Mayansh Bangali | Creative Developer",
-    description: "Explore the immersive digital experiences crafted by Mayansh Bangali.",
+    description: "Portfolio of Mayansh Bangali, an immersive and creative Fullstack developer specializing in award-level web experiences.",
     siteName: "Mayansh Bangali Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png", // Ensure this is 1200x630 in your /public folder
         width: 1200,
         height: 630,
         alt: "Mayansh Bangali Portfolio Preview",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mayansh Bangali | Creative Developer",
     description: "Immersive web experiences and high-performance development.",
-    images: ["/logo-sqr.png"],
+    images: ["/og-image.png"],
   },
 };
 
@@ -81,16 +81,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // JSON-LD Structured Data for Google
+  // ✅ PASTE JSON-LD HERE (Inside the component, before return)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Mayansh Bangali",
-    "url": "https://your-portfolio-domain.com",
+    "url": "https://mayanshbangali.vercel.app",
     "jobTitle": "Creative Fullstack Developer",
     "description": "Specializing in Next.js, Three.js, and immersive web animations.",
     "sameAs": [
-      "https://github.com/your-username",
+      "https://github.com/your-username", // Update these links!
       "https://linkedin.com/in/your-profile"
     ]
   };
@@ -105,7 +105,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${sofiaBold.variable} ${sofiaSemiBold.variable} ${splineLight.variable} ${splineRegular.variable} antialiased`}
+        className={`${sofiaBold.variable} ${sofiaSemiBold.variable} ${splineLight.variable} ${splineRegular.variable} antialiased bg-black`}
       >
         <ClientLoaderWrapper>
           <Navbar />
