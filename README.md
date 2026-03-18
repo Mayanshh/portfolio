@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎭 Immersive Creative Developer Portfolio
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Three.js](https://img.shields.io/badge/Three.js-r157-white?style=for-the-badge&logo=three.js)](https://threejs.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-3.12-green?style=for-the-badge&logo=greensock)](https://greensock.com/)
 
-First, run the development server:
+An award-grade, highly animated portfolio experience. This project pushes the boundaries of web transitions, 3D interaction, and creative storytelling using a modern React stack.
 
-```bash
+## ✨ Key Features
+
+* **🕹️ 3D Immersive Experience:** Integrated R3F (React Three Fiber) with high-quality `.glb` models and custom camera staging.
+* **🎬 Professional Animations:** Complex scroll-triggered reveals, text ripples, and image masking via GSAP and Framer Motion.
+* **🚀 Performance First:** Optimized for Core Web Vitals using Next.js Dynamic Imports and high-efficiency font loading (Woff2).
+* **📈 SEO & Analytics:** Full OpenGraph suite, dynamic Sitemap generation, and session-replay tracking with PostHog.
+* **📱 Responsive & Fluid:** Custom smooth-scrolling (Lenis/Locomotive) adapted for both desktop and mobile viewports.
+
+## 📂 Project Structure
+
+```text
+├── public/                 # Static assets (3D Models, Videos, Fonts)
+├── src/
+│   ├── animations/         # Reusable GSAP/Framer motion logic
+│   ├── app/                # Next.js App Router (File-based Routing)
+│   ├── components/         # Atomic UI components & 3D Scenes
+│   ├── hooks/              # Custom React hooks (useIsMobile, etc.)
+│   └── utils/              # Smooth scroll & Email logic
+🛠️ Tech Stack
+Framework: Next.js 15 (App Router)
+
+Language: TypeScript
+
+Styling: Tailwind CSS / PostCSS
+
+Animations: GSAP, Framer Motion
+
+3D Engine: Three.js / React Three Fiber
+
+Analytics: PostHog / Vercel Analytics
+
+Deployment: Vercel
+
+🚀 Getting Started
+Prerequisites
+Node.js 18.x or higher
+
+npm or pnpm
+
+Installation
+Clone the repository:
+
+Bash
+git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+cd client
+Install dependencies:
+
+Bash
+npm install
+Configure Environment Variables:
+Create a .env.local file for your analytics and email keys:
+
+Code snippet
+NEXT_PUBLIC_POSTHOG_KEY=your_key
+NEXT_PUBLIC_POSTHOG_HOST=[https://app.posthog.com](https://app.posthog.com)
+Run the development server:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+📦 Deployment & SEO
+This project is configured for one-click deployment on Vercel.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sitemap: Automatically generated at /sitemap.xml
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Robots: Configured at /robots.txt
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Metadata: Enhanced OpenGraph tags are handled in layout.tsx for optimal social media sharing.
 
-## Learn More
+🤝 Contact
+Mayansh — [mayanshbangali49@gmail.com] — [Your LinkedIn]
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---

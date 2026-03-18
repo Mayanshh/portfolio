@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --bg-color: #f7f7f7;
+    --text-color: #101010;
+    --text-gray-color: #908c8c;
+    --text-gray-second-color: #aaa;
+    --white: #ffffff;
+    --transition-main: cubic-bezier(0.11, 0.82, 0.39, 0.92);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 }
 
+.char-span {
+  transition: none !important;
+}
+
+::selection {
+  background-color: #aaa !important;
+  color: white !important;
+}
+
+.graySecondaryColor {
+    background-color: #e2e2e251;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: auto;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+
+/* local fonts */
+
+
+.sofiaBold {
+  font-family: var(--font-sofia-bold), sans-serif !important;
+}
+.sofiaSemiBold {
+  font-family: var(--font-sofia-semibold), sans-serif !important;
+}
+.splineLight {
+  font-family: var(--font-spline-light), monospace ;
+}
+.splineRegular {
+  font-family: var(--font-spline-regular), monospace !important;
+}
+
+
+.customTransition {
+  transition: all 0.5s var(--transition-main);
+}
+
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+
+.animated-link {
+ position: relative;
+ height: 40px;
+ padding: 0 40px;
+ border: 2px solid #000;
+ background: transparent;
+ user-select: none;
+ white-space: nowrap;
+ transition: all .05s linear;
+ font-family: inherit;
+}
+
+.animated-link:before, .animated-link:after {
+ content: "";
+ position: absolute;
+ background: #f7f7f7;
+ transition: all .2s linear;
+}
+
+.animated-link:before {
+ width: calc(100% + 6px);
+ height: calc(100% - 16px);
+ top: 8px;
+ left: -3px;
+}
+
+.animated-link:after {
+ width: calc(100% - 16px);
+ height: calc(100% + 6px);
+ top: -3px;
+ left: 8px;
+}
+
+.animated-link:hover {
+ cursor: crosshair;
+}
+
+.animated-link:active {
+ transform: scale(0.95);
+}
+
+.animated-link:hover:before {
+ height: calc(100% - 32px);
+ top: 16px;
+}
+
+.animated-link:hover:after {
+ width: calc(100% - 32px);
+ left: 16px;
+}
+
+.animated-link span {
+ font-size: 18px;
+ z-index: 3;
+ position: relative;
+ font-weight: 600;
 }
