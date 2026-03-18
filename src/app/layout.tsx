@@ -1,3 +1,6 @@
+import { Analytics } from "@vercel/analytics/next"; // This will turn blue/white now!
+import { SpeedInsights } from "@vercel/speed-insights/next"; // This will too!
+
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -6,7 +9,7 @@ import SmoothScroll from "@/utils/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import ClientLoaderWrapper from "@/components/ClientLoaderWrapper";
 
-// --- FONTS ---
+// --- FONTS (Keep your existing font config) ---
 const sofiaBold = localFont({
   src: "../../public/fonts/SofiaSansCondensed-Bold.woff2",
   variable: "--font-sofia-bold",
@@ -24,14 +27,12 @@ const splineRegular = localFont({
   variable: "--font-spline-regular",
 });
 
-// --- VIEWPORT & THEME ---
 export const viewport: Viewport = {
   themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
 
-// --- METADATA (SEO, OpenGraph, Twitter) ---
 export const metadata: Metadata = {
   metadataBase: new URL("https://mayanshbangali.vercel.app"),
   title: {
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     siteName: "Mayansh Bangali Portfolio",
     images: [
       {
-        url: "/og-image.png", // Ensure this is 1200x630 in your /public folder
+        url: "/og-image.png", 
         width: 1200,
         height: 630,
         alt: "Mayansh Bangali Portfolio Preview",
@@ -81,7 +82,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // ✅ PASTE JSON-LD HERE (Inside the component, before return)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -90,15 +90,14 @@ export default function RootLayout({
     "jobTitle": "Creative Fullstack Developer",
     "description": "Specializing in Next.js, Three.js, and immersive web animations.",
     "sameAs": [
-      "https://github.com/your-username", // Update these links!
-      "https://linkedin.com/in/your-profile"
+      "https://github.com/Mayanshh",
+      "https://www.linkedin.com/in/mayansh-bangali/"
     ]
   };
 
   return (
     <html lang="en">
       <head>
-        {/* Inject JSON-LD Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -111,8 +110,9 @@ export default function RootLayout({
           <Navbar />
           <SmoothScroll>{children}</SmoothScroll>
         </ClientLoaderWrapper>
+        <Analytics />
+        <SpeedInsights />
 
-        {/* NoScript Fallback */}
         <noscript>
           <div className="fixed inset-0 flex items-center justify-center bg-black text-white p-10 text-center z-9999">
             <p>Please enable JavaScript to experience this immersive portfolio.</p>
