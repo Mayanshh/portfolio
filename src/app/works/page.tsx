@@ -39,49 +39,54 @@ const projects = [
 
 export default function Works() {
   return (
-    <main className="h-[400svh] min-h-full w-full bg-(--bg-color) py-4 px-12 flex flex-row items-center justify-between">
+    <main className="h-auto lg:h-[400svh] min-h-full w-full bg-(--bg-color) py-10 lg:py-4 px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-between">
 
       {/* LEFT COLUMN */}
-      <section className="w-1/2 min-h-full h-screen flex flex-col items-center justify-start py-[20vh]">
+      <section className="w-full lg:w-1/2 min-h-full lg:h-screen flex flex-col items-center justify-start py-0 lg:py-[20vh]">
         
+        {/* Project: Vestira */}
         <Project
           src={projects[1].imageUrl}
           title={projects[1].title}
           video={projects[1].video}
           link={projects[1].link}
           tags={projects[1].tags}
-          className="mt-[100vh]"
+          className="mt-12 lg:mt-[100vh]"
         />
 
+        {/* Project: CodeHub India */}
         <Project
           src={projects[3].imageUrl}
           title={projects[3].title}
           video={projects[3].video}
           link={projects[3].link}
           tags={projects[3].tags}
-          className="mt-[150vh]"
+          className="mt-12 lg:mt-[150vh]"
         />
 
       </section>
 
       {/* RIGHT COLUMN */}
-      <section className="w-1/2 min-h-full h-screen flex flex-col items-center justify-start py-[20vh]">
+      <section className="w-full lg:w-1/2 min-h-full lg:h-screen flex flex-col items-center justify-start py-0 lg:py-[20vh]">
         
+        {/* Project: futurescape studios */}
         <Project
           src={projects[0].imageUrl}
           title={projects[0].title}
           video={projects[0].video}
           link={projects[0].link}
           tags={projects[0].tags}
+          className="mt-12 lg:mt-0"
         />
 
+        {/* Project: Veloura */}
         <Project
           src={projects[2].imageUrl}
           title={projects[2].title}
           video={projects[2].video}
           link={projects[2].link}
           tags={projects[2].tags}
-          className="mt-[150vh]"
+          className="mt-12 lg:mt-[150vh]"
         />
 
       </section>

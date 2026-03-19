@@ -1,5 +1,5 @@
-import { Analytics } from "@vercel/analytics/next"; // This will turn blue/white now!
-import { SpeedInsights } from "@vercel/speed-insights/next"; // This will too!
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";

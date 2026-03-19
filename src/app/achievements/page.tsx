@@ -15,7 +15,6 @@ export default function Achievements() {
 
     const handleMouseEnter = (imgSrc: string) => {
         if (activeImage === imgSrc && isHovered) return;
-
         if (hoverTimer.current) clearTimeout(hoverTimer.current);
 
         if (isHovered) {
@@ -25,7 +24,6 @@ export default function Achievements() {
             hoverTimer.current = setTimeout(() => {
                 setActiveImage(imgSrc);
                 setIsAnimatingOut(false);
-                
                 setTimeout(() => {
                     setIsHovered(true);
                 }, 50);
@@ -41,11 +39,9 @@ export default function Achievements() {
 
     const handleMouseLeave = () => {
         if (hoverTimer.current) clearTimeout(hoverTimer.current);
-
         if (isHovered) {
             setIsHovered(false);
             setIsAnimatingOut(true);
-
             setTimeout(() => {
                 setIsAnimatingOut(false);
             }, 800);
@@ -115,16 +111,16 @@ export default function Achievements() {
     ];
 
     return (
-        <main className="min-h-screen relative h-fit w-screen bg-(--bg-color) flex flex-col items-center justify-start">
-            <section className="w-full h-[25svh] flex flex-col items-end justify-between">
-                <p className="text-black leading-none tracking-tighter splineLight uppercase text-xl pr-[45%]">
+        <main className="min-h-screen  relative h-fit w-full bg-(--bg-color) flex flex-col items-center justify-start overflow-x-hidden">
+            <section className="w-full h-auto lg:h-[25svh] flex flex-col items-start lg:items-end justify-between px-6 lg:px-0 py-10 lg:py-0">
+                <p className="text-black leading-none tracking-tighter splineLight uppercase text-lg lg:text-xl lg:pr-[45%] mb-8 lg:mb-0">
                     My expertise is confirmed <br /> by  
-                    <span className="text-bold sofiaSemiBold text-2xl leading-[0.80]">
-                        many international <br /> recognitions
+                    <span className="text-bold sofiaSemiBold text-xl lg:text-2xl leading-[0.80]">
+                        &nbsp;many international <br /> recognitions
                     </span>
                 </p>
-                <p className="text-black leading-none tracking-[-0.08rem] splineLight uppercase text-xl pr-8">
-                    <span className="text-bold sofiaSemiBold text-2xl leading-[0.80] indent-1">
+                <p className="text-black leading-none tracking-[-0.08rem] splineLight uppercase text-lg lg:text-xl lg:pr-8">
+                    <span className="text-bold sofiaSemiBold text-xl lg:text-2xl leading-[0.80] indent-1">
                         Listed In Top 20 Teams
                     </span> <br />
                     (Nasa International Space Apps Hackathon) <br />
@@ -132,21 +128,27 @@ export default function Achievements() {
                 </p>
             </section>
             
-            <div className="w-full h-[90svh] flex flex-row items-center justify-center px-8 py-10 mt-10">
-                <div className="w-[30%] h-full flex flex-col items-start justify-start">
+            <div className="w-full h-auto lg:h-[90svh] flex flex-col lg:flex-row items-center justify-center px-6 lg:px-8 py-10 mt-10">
+                <div className="w-full lg:w-[30%] h-full flex flex-col items-start justify-start">
                     {links.map((item, index) => (
                         <div 
                             key={index} 
                             className="w-full" 
                             onMouseEnter={() => handleMouseEnter(item.hoverImg)} 
                             onMouseLeave={handleMouseLeave}
+                            // Toggle for mobile touch
+                            onClick={() => {
+                                if(window.innerWidth < 1024) {
+                                    handleMouseEnter(item.hoverImg);
+                                }
+                            }}
                         >
                             <LogoLinkWithBadge 
                                 iconUrl={item.icon} 
                                 badgeNumber={item.badge} 
                                 arrFrom="top right" 
                                 arrTo="center center"
-                                className={`text-black! splineRegular text-2xl! w-full ${item.class}`}
+                                className={`text-black! splineRegular text-xl lg:text-2xl! w-full ${item.class}`}
                                 gapIntensity={0.35} 
                                 name={item.name} 
                                 url={item.url}
@@ -157,18 +159,18 @@ export default function Achievements() {
             </div>
 
             <figure 
-                className='bg-transparent absolute top-[45%] left-50 -translate-x-1/2 h-48 w-48 overflow-hidden pointer-events-none z-50 shadow-2xl'
+                className='bg-transparent fixed lg:absolute top-1/2 lg:top-[45%] left-50 -translate-x-1/2  lg:translate-y-0 h-48 w-48 lg:h-48 lg:w-48 overflow-hidden pointer-events-none z-50 shadow-2xl rounded-lg'
                 style={{
                     clipPath: clipPath,
                     transition: transition,
                 }}
             >
-                <div className="relative h-full w-full">
+                <div className="relative h-full w-full ">
                     <Image 
                         src={activeImage}
                         alt="Achievement Visual"
                         fill
-                        sizes="192px"
+                        sizes="(max-width: 1024px) 192px, 192px"
                         priority
                         className="object-contain object-center"
                         style={{

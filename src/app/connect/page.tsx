@@ -32,7 +32,7 @@ export default function Connect() {
   };
 
   return (
-    <div className="w-full min-h-[300svh] h-[300svh]! bg-(--bg-color) flex flex-col items-center pt-35 justify-between overflow-hidden">
+    <div className="w-full min-h-[120svh]! lg:min-h-[300svh] lg:h-[300svh]! bg-(--bg-color) flex flex-col items-center pt-35 justify-between overflow-hidden">
       <ConnectTitle />
 
       <section className="mt-50 w-[90%] md:w-[60%] lg:w-[40%] flex items-center justify-center pb-20 relative">

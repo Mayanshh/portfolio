@@ -1,8 +1,8 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
-import { Suspense, useRef } from 'react'
+import { Suspense, useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -16,43 +16,70 @@ if (typeof window !== 'undefined') {
 
 function Model() {
   const { scene } = useGLTF('/models/3Dmodel.glb')
-  return <primitive object={scene} scale={1} />
+  const [scale, setScale] = useState(1)
+
+  // Adjust model scale based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setScale(0.6) // Smaller scale for mobile
+      } else if (window.innerWidth < 1024) {
+        setScale(0.8) // Tablet
+      } else {
+        setScale(1)   // Desktop
+      }
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return <primitive object={scene} scale={scale} />
 }
 
 function CameraRig({ triggerRef }: { triggerRef: React.RefObject<HTMLDivElement> }) {
   const scrollGroup = useRef<THREE.Group>(null!)
   const mouseGroup = useRef<THREE.Group>(null!)
   const mouseTarget = useRef({ x: 0, y: 0 })
+  const { camera } = useThree()
 
-  // 1. SCROLL ROTATION (X-AXIS)
+  // Adjust Camera Position for Mobile
+  useEffect(() => {
+    const updateCam = () => {
+      if (window.innerWidth < 768) {
+        camera.position.z = 7 // Move camera back on mobile to fit model
+      } else {
+        camera.position.z = 5
+      }
+      camera.updateProjectionMatrix()
+    }
+    updateCam()
+    window.addEventListener('resize', updateCam)
+    return () => window.removeEventListener('resize', updateCam)
+  }, [camera])
+
   useGSAP(() => {
     if (!scrollGroup.current) return
 
-    // Starting position: Rotated 90 degrees on X (tilted away or down)
     gsap.set(scrollGroup.current.rotation, { x: Math.PI / 2 })
 
     gsap.to(scrollGroup.current.rotation, {
-      x: 0, // Animates to flat/upright
+      x: 0,
       ease: "none",
       scrollTrigger: {
         trigger: triggerRef.current,
         start: "top top",
-        end: "+=800vh", // Adjusted for a tighter feel than 1600
-        scrub: 1.5,     // Adding a number (1.5) makes the "catch up" smoother than 'true'
+        end: "+=800vh", 
+        scrub: 1.5,
       }
     })
   }, { dependencies: [triggerRef] })
 
-  // 2. MOUSE FOLLOW (PARALLAX)
   useFrame((state) => {
     const { mouse } = state
-    
-    // Smoothly interpolate mouse targets
     mouseTarget.current.x = THREE.MathUtils.lerp(mouseTarget.current.x, mouse.x * 0.4, 0.1)
     mouseTarget.current.y = THREE.MathUtils.lerp(mouseTarget.current.y, mouse.y * 0.4, 0.1)
 
-    // Apply parallax to the INNER group
-    // This allows the model to look at the cursor while the parent handles the scroll flip
     mouseGroup.current.rotation.y = mouseTarget.current.x
     mouseGroup.current.rotation.x = -mouseTarget.current.y
   })
@@ -71,7 +98,6 @@ export default function Scene3D() {
   const linkRef = useRef<HTMLDivElement>(null!)
 
   useGSAP(() => {
-    // 3. PINNING
     ScrollTrigger.create({
       trigger: containerRef.current,
       pin: true,
@@ -80,7 +106,6 @@ export default function Scene3D() {
       pinSpacing: true,
     })
 
-    // 4. LINK MOUSE FOLLOW (SMOOTH INTERPOLATION)
     gsap.set(linkRef.current, { xPercent: -50, yPercent: -50 })
     const xTo = gsap.quickTo(linkRef.current, "x", { duration: 0.6, ease: "power2.out" })
     const yTo = gsap.quickTo(linkRef.current, "y", { duration: 0.6, ease: "power2.out" })
@@ -111,9 +136,10 @@ export default function Scene3D() {
         </Suspense>
       </Canvas>
 
-      <div ref={linkRef} className="absolute top-1/2 left-1/2 pointer-events-none z-10">
-        <div className="pointer-events-auto">
-          <CustomLinkBracket name="View 3D Works" url="/works/3d" />
+      {/* Responsive Link Overlay */}
+      <div ref={linkRef} className="absolute top-1/2 left-1/2 pointer-events-none z-10 w-full flex justify-center">
+        <div className="pointer-events-auto scale-75 md:scale-100">
+          <CustomLinkBracket name="View 3D Works" url="https://mayanshh.github.io/MayanshPortfolio/" />
         </div>
       </div>
     </div>

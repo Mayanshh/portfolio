@@ -191,7 +191,7 @@ const FallingText: React.FC<FallingTextProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative z-[1] w-full h-full cursor-default overflow-hidden ${className}`}
+      className={`relative z-1 w-full h-full cursor-default overflow-hidden ${className}`}
     >
       <div
         ref={textRef}
