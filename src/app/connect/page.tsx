@@ -39,7 +39,7 @@ export default function Connect() {
         
         {/* SUCCESS OVERLAY: Appears when mail is sent */}
         {status === "success" && (
-          <div className="absolute inset-0 z-50 bg-red-200 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500">
+          <div className="absolute inset-0 z-50 bg-(--bg-color) flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500">
             <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mb-6">
               <Check className="text-white" size={40} />
             </div>

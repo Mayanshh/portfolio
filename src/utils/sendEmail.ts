@@ -22,30 +22,47 @@ export async function sendEmail(formData: FormData) {
     budget: formData.get("budget"),
   };
 
-  const htmlContent = `
-    <div style="font-family: Helvetica, Arial, sans-serif; max-width: 600px; padding: 40px; color: #000; background-color: #fff; border: 1px solid #000;">
-      <h1 style="font-size: 14px; text-transform: uppercase; letter-spacing: 3px; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 40px;">New Project Inquiry</h1>
-      <div style="margin-bottom: 25px;">
-        <p style="font-size: 10px; text-transform: uppercase; color: #888; margin: 0; letter-spacing: 1px;">Client</p>
-        <p style="font-size: 20px; font-weight: bold; margin: 5px 0 0 0;">${data.name}</p>
-      </div>
-      <div style="display: flex; margin-bottom: 25px;">
-        <div style="flex: 1;">
-          <p style="font-size: 10px; text-transform: uppercase; color: #888; margin: 0; letter-spacing: 1px;">Email / Phone</p>
-          <p style="font-size: 15px; margin: 5px 0 0 0;">${data.email} <br/> ${data.phone}</p>
-        </div>
-        <div style="flex: 1; padding-left: 20px; border-left: 1px solid #eee;">
-          <p style="font-size: 10px; text-transform: uppercase; color: #888; margin: 0; letter-spacing: 1px;">Budget Range</p>
-          <p style="font-size: 15px; margin: 5px 0 0 0;">$${data.budget}</p>
-        </div>
-      </div>
-      <div style="margin-bottom: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-        <p style="font-size: 10px; text-transform: uppercase; color: #888; margin: 0; letter-spacing: 1px;">Message Brief</p>
-        <p style="font-size: 16px; line-height: 1.6; margin: 10px 0 0 0; color: #333;">${data.message}</p>
-      </div>
-      <p style="font-size: 9px; text-transform: uppercase; color: #ccc; margin-top: 50px;">Sent via Portfolio v2 Server Action</p>
+const htmlContent = `
+  <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; background-color: #ffffff; color: #000000; -webkit-font-smoothing: antialiased;">
+
+    <div style="border-bottom: 1px solid #000000; padding-bottom: 30px; margin-bottom: 40px;">
+      <p style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #999999; margin: 0 0 10px 0;">Transmission // 01</p>
+      <h1 style="font-size: 32px; font-weight: 400; letter-spacing: -0.03em; margin: 0;">New Inquiry.</h1>
     </div>
-  `;
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 40px;">
+      <tr>
+        <td width="100%" colspan="2" valign="top" style="padding-bottom: 40px;">
+          <p style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999999; margin: 0 0 10px 0;">Client</p>
+          <p style="font-size: 42px; font-weight: 500; letter-spacing: -0.04em; margin: 0; line-height: 1;">${data.name}</p>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%" valign="top" style="border-top: 1px solid #e5e5e5; padding-top: 20px; padding-right: 20px;">
+          <p style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999999; margin: 0 0 10px 0;">Contact</p>
+          <p style="font-size: 14px; margin: 0 0 4px 0; font-weight: 500; color: #000000;">${data.email}</p>
+          <p style="font-size: 14px; color: #666666; margin: 0;">${data.phone}</p>
+        </td>
+        <td width="50%" valign="top" style="border-top: 1px solid #e5e5e5; border-left: 1px solid #e5e5e5; padding-top: 20px; padding-left: 20px;">
+          <p style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999999; margin: 0 0 10px 0;">Budget Estimate</p>
+          <p style="font-size: 14px; margin: 0; font-weight: 500; color: #000000;">$${data.budget}</p>
+        </td>
+      </tr>
+    </table>
+
+    <div style="border-top: 1px solid #000000; padding-top: 30px; margin-bottom: 50px;">
+      <p style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #999999; margin: 0 0 15px 0;">Project Brief</p>
+      <p style="font-size: 18px; line-height: 1.6; color: #111111; margin: 0; font-weight: 400;">
+        ${data.message}
+      </p>
+    </div>
+
+    <div style="border-top: 1px solid #e5e5e5; padding-top: 20px;">
+      <p style="font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #cccccc; margin: 0;">Portfolio v2 &copy; Server Action</p>
+    </div>
+
+  </div>
+`;
 
   try {
     await transporter.sendMail({

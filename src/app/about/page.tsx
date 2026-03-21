@@ -162,7 +162,7 @@ export default function About() {
         </TextReveal>
         <div className="w-full h-auto lg:h-[60svh] mt-16 lg:mt-25 flex flex-col lg:flex-row items-center justify-between gap-12">
           <figure className="h-[40vh] lg:h-[90%] w-full lg:w-[48vw] flex flex-row items-center justify-center lg:justify-between">
-            <div className="relative h-full w-[80vw] lg:w-[30vw] lg:ml-[18vw]">
+            <div className="relative h-[65%] flex items-center justify-center w-[80vw] lg:w-[30vw] lg:ml-[18vw]">
               <Image
                 src="https://res.cloudinary.com/djd1tenw9/image/upload/f_auto,q_auto:good,c_fit,w_800,h_1200,dpr_auto/v1773840445/lifestyle-portrait.2_kdymjl.png"
                 alt="Image was here"

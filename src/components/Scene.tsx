@@ -5,7 +5,7 @@ import Scene3D from '@/components/Model'
 
 export default function Home() {
   return (
-    <main className="relative w-full min-h-[200vh] bg-white">
+    <main className="relative w-full min-h-[200vh]! bg-white">
       <Scene3D />
     </main>
   )
